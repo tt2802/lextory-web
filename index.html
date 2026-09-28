@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lextory – Read. Understand. Remember.</title>
+
+  <meta
+    name="description"
+    content="Lextory helps you learn vocabulary naturally from the books you read."
+  >
+
+  <style>
+    :root {
+      --green-dark: #062419;
+      --green: #0d4a35;
+      --green-light: #2f7659;
+      --cream: #f7f1e3;
+      --cream-dark: #e8ddc5;
+      --gold: #b8955a;
+      --text: #173228;
+      --muted: #617067;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      margin-top: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6, 36, 25, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      font-family: Georgia, serif;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--cream);
+      color: var(--green-dark);
+      display: grid;
+      place-items: center;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      color: rgba(255,255,255,0.84);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 700px;
+      background:
+        radial-gradient(circle at 75% 35%, rgba(67, 131, 93, 0.25), transparent 30%),
+        linear-gradient(145deg, #062419 0%, #0c3828 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 80px;
+      padding: 90px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(247, 241, 227, 0.12);
+      border: 1px solid rgba(247, 241, 227, 0.18);
+      padding: 8px 14px;
+      border-radius: 100px;
+      font-size: 13px;
+      margin-bottom: 24px;
+      color: #e9dfc8;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 0.98;
+      margin-bottom: 22px;
+      letter-spacing: -2px;
+    }
+
+    .hero h1 span {
+      color: #dac79f;
+    }
+
+    .hero-text {
+      max-width: 590px;
+      color: rgba(255,255,255,0.78);
+      font-size: 19px;
+      margin-bottom: 34px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .button-primary {
+      background: var(--cream);
+      color: var(--green-dark);
+    }
+
+    .button-primary:hover {
+      transform: translateY(-2px);
+      background: white;
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+    }
+
+    .button-secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .book-visual {
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .book-circle {
+      width: min(440px, 100%);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.13), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 50px 100px rgba(0,0,0,0.25);
+    }
+
+    .book-symbol {
+      font-size: 150px;
+      filter: drop-shadow(0 15px 20px rgba(0,0,0,0.25));
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(36px, 5vw, 54px);
+      max-width: 700px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .section-description {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    /* FEATURES */
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 55px;
+    }
+
+    .feature-card {
+      padding: 32px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(6,36,25,0.08);
+      border-radius: 22px;
+      min-height: 260px;
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      background: var(--green-dark);
+      color: white;
+      border-radius: 14px;
+      font-size: 25px;
+      margin-bottom: 24px;
+    }
+
+    .feature-card h3 {
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* HOW */
+
+    .how {
+      background: #efe5d1;
+    }
+
+    .steps {
+      margin-top: 55px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .step-number {
+      font-family: Georgia, serif;
+      font-size: 54px;
+      color: var(--green-light);
+      opacity: 0.45;
+      margin-bottom: 10px;
+    }
+
+    .step h3 {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* AI */
+
+    .ai-section {
+      background: var(--green-dark);
+      color: white;
+    }
+
+    .ai-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .ai-section .section-description {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .quote-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 32px;
+      border-radius: 22px;
+    }
+
+    .word {
+      font-family: Georgia, serif;
+      font-size: 38px;
+      margin-bottom: 4px;
+    }
+
+    .translation {
+      color: #dfc99d;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .context {
+      color: rgba(255,255,255,0.72);
+      font-style: italic;
+    }
+
+    /* BETA */
+
+    .beta {
+      text-align: center;
+    }
+
+    .beta-box {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 70px 30px;
+      border-radius: 30px;
+      background: white;
+      border: 1px solid rgba(6,36,25,0.08);
+      box-shadow: 0 30px 80px rgba(6,36,25,0.08);
+    }
+
+    .beta-box h2 {
+      font-size: clamp(38px, 5vw, 56px);
+      margin-bottom: 20px;
+    }
+
+    .beta-box p {
+      max-width: 600px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #041b13;
+      color: rgba(255,255,255,0.7);
+      padding: 50px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid,
+      .ai-box {
+        grid-template-columns: 1fr;
+      }
+
+      .book-visual {
+        display: none;
+      }
+
+      .features-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container nav-inner">
+
+    <a href="#" class="brand">
+      <div class="brand-mark">L</div>
+      Lextory
+    </a>
+
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#ai">AI learning</a>
+      <a href="#beta">Beta</a>
+      <a href="privacy/">Privacy</a>
+    </div>
+
+  </div>
+</nav>
+
+
+<header class="hero">
+
+  <div class="container hero-grid">
+
+    <div>
+
+      <div class="badge">
+        Lextory Beta
+      </div>
+
+      <h1>
+        Read.<br>
+        Understand.<br>
+        <span>Remember.</span>
+      </h1>
+
+      <p class="hero-text">
+        Turn the books you read into vocabulary you actually remember.
+        Lextory helps you understand unfamiliar words in context,
+        save them instantly and review them when it matters.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#beta" class="button button-primary">
+          Join the beta
+        </a>
+
+        <a href="#features" class="button button-secondary">
+          Discover Lextory
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="book-visual">
+
+      <div class="book-circle">
+        <div class="book-symbol">📖</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<section id="features">
+
+  <div class="container">
+
+    <div class="section-label">
+      Learn naturally
+    </div>
+
+    <h2 class="section-title">
+      Your reading becomes your vocabulary course.
+    </h2>
+
+    <p class="section-description">
+      No random word lists. Learn vocabulary from stories and books
+      you actually care about.
+    </p>
+
+
+    <div class="features-grid">
+
+      <article class="feature-card">
+
+        <div class="feature-icon">📚</div>
+
+        <h3>Read naturally</h3>
+
+        <p>
+          Keep your books and PDFs together and learn without constantly
+          interrupting your reading.
+        </p>
+
+      </article>
+
+
+      <article class="feature-card">
+
+        <div class="feature-icon">✨</div>
+
+        <h3>Understand context</h3>
+
+        <p>
+          Translate words and phrases with the sentence around them,
+          helping you understand what they really mean.
+        </p>
+
+      </article>
+
+
+      <article class="feature-card">
+
+        <div class="feature-icon">🧠</div>
+
+        <h3>Remember longer</h3>
+
+        <p>
+          Review saved vocabulary with spaced repetition instead of
+          trying to memorize everything at once.
+        </p>
+
+      </article>
+
+
+      <article class="feature-card">
+
+        <div class="feature-icon">⚡</div>
+
+        <h3>Quick Add</h3>
+
+        <p>
+          Save a new word in seconds, including its translation,
+          source book and learning context.
+        </p>
+
+      </article>
+
+
+      <article class="feature-card">
+
+        <div class="feature-icon">🌍</div>
+
+        <h3>Online & offline</h3>
+
+        <p>
+          Use online translation when available and supported offline
+          translation models when you need them.
+        </p>
+
+      </article>
+
+
+      <article class="feature-card">
+
+        <div class="feature-icon">📈</div>
+
+        <h3>See your progress</h3>
+
+        <p>
+          Follow your learning history and watch the vocabulary from
+          your books gradually become familiar.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="how" class="how">
+
+  <div class="container">
+
+    <div class="section-label">
+      How it works
+    </div>
+
+    <h2 class="section-title">
+      Three steps from unknown to remembered.
+    </h2>
+
+
+    <div class="steps">
+
+      <div class="step">
+
+        <div class="step-number">01</div>
+
+        <h3>Read</h3>
+
+        <p>
+          Read a foreign-language book or PDF and find a word
+          you don't understand.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">02</div>
+
+        <h3>Save</h3>
+
+        <p>
+          Translate it, understand it in context and save it
+          directly to your vocabulary.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">03</div>
+
+        <h3>Remember</h3>
+
+        <p>
+          Lextory brings the word back at the right time
+          through spaced repetition.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="ai" class="ai-section">
+
+  <div class="container ai-box">
+
+    <div>
+
+      <div class="section-label">
+        Context-aware learning
+      </div>
+
+      <h2 class="section-title">
+        Understand more than a dictionary definition.
+      </h2>
+
+      <p class="section-description">
+        Optional AI-assisted features can help explain a word using
+        the sentence where you found it, provide examples and make
+        unfamiliar vocabulary easier to understand.
+      </p>
+
+    </div>
+
+
+    <div class="quote-card">
+
+      <div class="word">
+        glimpse
+      </div>
+
+      <div class="translation">
+        letmý pohled
+      </div>
+
+      <div class="context">
+        “She caught a glimpse of the castle through the trees.”
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="beta" class="beta">
+
+  <div class="container">
+
+    <div class="beta-box">
+
+      <div class="section-label">
+        Lextory Beta
+      </div>
+
+      <h2>
+        The story is just beginning.
+      </h2>
+
+      <p>
+        Lextory is currently being prepared for its first beta testers.
+        Android testing will be available through Google Play,
+        with iOS support planned as well.
+      </p>
+
+      <a href="mailto:tomasdanielkubin@gmail.com" class="button button-primary">
+        Contact / Beta access
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <div>
+      © 2026 Lextory · Tomáš Daniel Kubín
+    </div>
+
+    <div class="footer-links">
+      <a href="privacy/">Privacy Policy</a>
+      <a href="mailto:tomasdanielkubin@gmail.com">Contact</a>
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>
