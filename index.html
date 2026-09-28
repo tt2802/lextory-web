@@ -12,6 +12,9 @@
   >
 
   <link rel="icon" type="image/png" href="assets/lextory_icon.png">
+  <link rel="alternate" hreflang="en" href="https://tt2802.github.io/lextory-web/">
+  <link rel="alternate" hreflang="cs" href="https://tt2802.github.io/lextory-web/cs/">
+  <link rel="alternate" hreflang="x-default" href="https://tt2802.github.io/lextory-web/">
 
   <style>
     :root {
@@ -102,6 +105,31 @@
 
     .nav-links a:hover {
       color: white;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      height: 34px;
+      padding: 0 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.20);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .language-switch:hover {
+      background: rgba(255,255,255,0.15);
     }
 
     /* HERO */
@@ -537,14 +565,17 @@
       Lextory
     </a>
 
-    <div class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#how">How it works</a>
-      <a href="#screenshots">App preview</a>
-      <a href="#ai">AI learning</a>
-      <a href="#beta">Beta</a>
-      <a href="about/">About</a>
-      <a href="privacy/">Privacy</a>
+    <div class="nav-actions">
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#screenshots">App preview</a>
+        <a href="#ai">AI learning</a>
+        <a href="#beta">Beta</a>
+        <a href="about/">About</a>
+        <a href="privacy/">Privacy</a>
+      </div>
+      <a class="language-switch" href="cs/" lang="cs" aria-label="Česká verze">CZ</a>
     </div>
 
   </div>
@@ -955,6 +986,7 @@
       <a href="about/">About</a>
       <a href="privacy/">Privacy Policy</a>
       <a href="about/#contact">Contact</a>
+      <a href="cs/" lang="cs">Čeština</a>
     </div>
 
   </div>
