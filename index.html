@@ -11,6 +11,8 @@
     content="Lextory helps you learn vocabulary naturally from the books you read."
   >
 
+  <link rel="icon" type="image/png" href="assets/lextory_icon.png">
+
   <style>
     :root {
       --green-dark: #062419;
@@ -82,17 +84,13 @@
       font-weight: bold;
     }
 
-    .brand-mark {
+    .brand-logo {
       width: 38px;
       height: 38px;
       border-radius: 10px;
-      background: var(--cream);
-      color: var(--green-dark);
-      display: grid;
-      place-items: center;
-      font-family: Georgia, serif;
-      font-weight: bold;
-      font-size: 24px;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.20);
     }
 
     .nav-links {
@@ -209,9 +207,13 @@
       box-shadow: 0 50px 100px rgba(0,0,0,0.25);
     }
 
-    .book-symbol {
-      font-size: 150px;
-      filter: drop-shadow(0 15px 20px rgba(0,0,0,0.25));
+    .hero-logo {
+      width: 74%;
+      max-width: 320px;
+      height: auto;
+      display: block;
+      border-radius: 22%;
+      filter: drop-shadow(0 24px 32px rgba(0,0,0,0.30));
     }
 
     /* SECTIONS */
@@ -445,7 +447,11 @@
   <div class="container nav-inner">
 
     <a href="#" class="brand">
-      <div class="brand-mark">L</div>
+      <img
+        src="assets/lextory_icon.png"
+        alt="Lextory logo"
+        class="brand-logo"
+      >
       Lextory
     </a>
 
@@ -501,7 +507,11 @@
     <div class="book-visual">
 
       <div class="book-circle">
-        <div class="book-symbol">📖</div>
+        <img
+          src="assets/lextory_icon.png"
+          alt="Lextory app icon"
+          class="hero-logo"
+        >
       </div>
 
     </div>
