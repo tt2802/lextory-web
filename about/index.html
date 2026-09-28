@@ -12,6 +12,8 @@
   >
 
   <link rel="icon" type="image/png" href="../assets/lextory_icon.png">
+  <link rel="alternate" hreflang="en" href="https://tt2802.github.io/lextory-web/about/">
+  <link rel="alternate" hreflang="cs" href="https://tt2802.github.io/lextory-web/cs/about/">
 
   <style>
     :root {
@@ -99,6 +101,31 @@
 
     .nav-links a:hover {
       color: white;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      height: 34px;
+      padding: 0 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.20);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .language-switch:hover {
+      background: rgba(255,255,255,0.15);
     }
 
     .hero {
@@ -261,11 +288,14 @@
       Lextory
     </a>
 
-    <div class="nav-links">
-      <a href="../">Home</a>
-      <a href="../#features">Features</a>
-      <a href="../#beta">Beta</a>
-      <a href="../privacy/">Privacy</a>
+    <div class="nav-actions">
+      <div class="nav-links">
+        <a href="../">Home</a>
+        <a href="../#features">Features</a>
+        <a href="../#beta">Beta</a>
+        <a href="../privacy/">Privacy</a>
+      </div>
+      <a class="language-switch" href="../cs/about/" lang="cs" aria-label="Česká verze">CZ</a>
     </div>
   </div>
 </nav>
@@ -387,6 +417,7 @@
       <a href="../">Home</a>
       <a href="../privacy/">Privacy Policy</a>
       <a href="mailto:tomasdanielkubin@gmail.com">Contact</a>
+      <a href="../cs/about/" lang="cs">Čeština</a>
     </div>
   </div>
 </footer>
