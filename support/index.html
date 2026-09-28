@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lextory Support</title>
+  <meta
+    name="description"
+    content="Support, frequently asked questions and contact information for Lextory."
+  >
+
+  <link rel="icon" type="image/png" href="../assets/lextory_icon.png">
+  <link rel="alternate" hreflang="en" href="https://tt2802.github.io/lextory-web/support/">
+  <link rel="alternate" hreflang="cs" href="https://tt2802.github.io/lextory-web/cs/support/">
+
+  <style>
+    :root {
+      --green-dark: #062419;
+      --green: #0d4a35;
+      --cream: #f7f1e3;
+      --paper: #fffdf8;
+      --gold: #b8955a;
+      --text: #173228;
+      --muted: #617067;
+      --border: rgba(6, 36, 25, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .container {
+      width: min(980px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6, 36, 25, 0.97);
+      color: white;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.20);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      color: rgba(255,255,255,0.82);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: white; }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      height: 34px;
+      padding: 0 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.20);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero {
+      padding: 100px 0 90px;
+      color: white;
+      background:
+        radial-gradient(circle at 75% 20%, rgba(67, 131, 93, 0.22), transparent 28%),
+        linear-gradient(145deg, #062419 0%, #0c3828 100%);
+    }
+
+    .eyebrow {
+      color: #dac79f;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0 0 20px;
+      max-width: 760px;
+      font-size: clamp(46px, 7vw, 72px);
+      line-height: 1;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 0;
+      color: rgba(255,255,255,0.76);
+      font-size: 19px;
+    }
+
+    main { padding: 80px 0 95px; }
+
+    .intro {
+      max-width: 720px;
+      margin-bottom: 34px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .faq {
+      display: grid;
+      gap: 14px;
+    }
+
+    details {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 20px 22px;
+      font-weight: 800;
+      color: var(--green-dark);
+    }
+
+    details p {
+      margin: 0;
+      padding: 0 22px 22px;
+      color: var(--muted);
+    }
+
+    .contact {
+      margin-top: 50px;
+      padding: 34px;
+      border-radius: 24px;
+      background: var(--green-dark);
+      color: white;
+    }
+
+    .contact h2 {
+      margin: 0 0 10px;
+      font-size: 32px;
+    }
+
+    .contact p {
+      margin: 0 0 20px;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .button {
+      display: inline-flex;
+      padding: 13px 19px;
+      border-radius: 12px;
+      background: var(--cream);
+      color: var(--green-dark);
+      font-weight: 800;
+    }
+
+    footer {
+      padding: 42px 0;
+      background: #041b13;
+      color: rgba(255,255,255,0.68);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a:hover { color: white; }
+
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .hero { padding: 78px 0 70px; }
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a class="brand" href="../">
+      <img src="../assets/lextory_icon.png" alt="Lextory logo">
+      Lextory
+    </a>
+
+    <div class="nav-actions">
+      <div class="nav-links">
+        <a href="../">Home</a>
+        <a href="../#features">Features</a>
+        <a href="../about/">About</a>
+        <a href="../privacy/">Privacy</a>
+      </div>
+      <a class="language-switch" href="../cs/support/" lang="cs" aria-label="Česká verze">CZ</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow">Lextory Support</div>
+    <h1>Need help with Lextory?</h1>
+    <p>
+      Find quick answers about the beta, offline translation, AI features,
+      your local data and how to send feedback.
+    </p>
+  </div>
+</header>
+
+<main class="container">
+  <h2>Frequently asked questions</h2>
+  <p class="intro">
+    Lextory is still in beta development, so some features and details may change.
+    If something does not work as expected, feedback is especially useful.
+  </p>
+
+  <div class="faq">
+    <details>
+      <summary>Where is Lextory available?</summary>
+      <p>
+        Android beta testing is being prepared through Google Play. iOS support is
+        planned as the project develops.
+      </p>
+    </details>
+
+    <details>
+      <summary>Do I need a Lextory account?</summary>
+      <p>
+        No. The current version does not require a Lextory account. Most books,
+        vocabulary, review progress and settings are stored locally on your device.
+      </p>
+    </details>
+
+    <details>
+      <summary>What happens if online translation is unavailable?</summary>
+      <p>
+        Lextory can use downloaded offline translation models on supported mobile
+        platforms. You can manage language models in Settings → Offline translations.
+      </p>
+    </details>
+
+    <details>
+      <summary>Why do definition and synonym features need Wi-Fi?</summary>
+      <p>
+        Those optional learning features use online AI processing. If Wi-Fi is not
+        available, the word can still be saved and Lextory can use translation
+        functionality without requesting the AI explanation.
+      </p>
+    </details>
+
+    <details>
+      <summary>Are my books or PDFs uploaded automatically?</summary>
+      <p>
+        No. Opening a book or PDF in Lextory does not automatically upload the whole
+        document. Only information required for an online feature you actively use
+        may be transmitted.
+      </p>
+    </details>
+
+    <details>
+      <summary>How can I report a bug or suggest an improvement?</summary>
+      <p>
+        In Lextory, open Settings → Beta & support → Send feedback. You can also
+        contact the developer by email below.
+      </p>
+    </details>
+
+    <details>
+      <summary>Where can I read the Privacy Policy?</summary>
+      <p>
+        The full Privacy Policy is available on the
+        <a href="../privacy/" style="color:#0d4a35;font-weight:700;">Privacy page</a>.
+      </p>
+    </details>
+  </div>
+
+  <section class="contact">
+    <h2>Still need help?</h2>
+    <p>
+      Send a message with a short description of the problem. Screenshots and the
+      app version can help when reporting a bug.
+    </p>
+    <a class="button" href="mailto:tomasdanielkubin@gmail.com">Contact support</a>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© 2026 Lextory · Tomáš Daniel Kubín</div>
+    <div class="footer-links">
+      <a href="../about/">About</a>
+      <a href="../privacy/">Privacy</a>
+      <a href="../">Home</a>
+      <a href="../cs/support/" lang="cs">Čeština</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
