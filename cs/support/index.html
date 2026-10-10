@@ -286,8 +286,7 @@
     <details>
       <summary>Potřebuji účet Lextory?</summary>
       <p>
-        Ne. Současná verze účet Lextory nevyžaduje. Většina knih, slovní zásoby,
-        průběhu opakování a nastavení se ukládá lokálně v zařízení.
+        Ne. Lextory funguje i bez účtu a většina dat je uložena lokálně v zařízení. Přihlášení přes Google je dobrovolné a potřebuješ ho jen pro funkce s AI, cloudovou zálohu a Premium.
       </p>
     </details>
 
@@ -341,6 +340,45 @@
     </p>
     <a class="button" href="mailto:tomasdanielkubin@gmail.com">Kontaktovat podporu</a>
   </section>
+
+  <section class="contact" id="beta">
+    <h2>Zapoj se do bety</h2>
+    <p>Chceš Lextory vyzkoušet? Nech tu své jméno a Gmail, který používáš v Google Play, a já tě přidám mezi testery. Pozvánku dostaneš e-mailem.</p>
+    <form id="beta-form" style="display:grid;gap:12px;max-width:460px;margin-top:16px;">
+      <input name="name" required maxlength="80" placeholder="Tvé jméno" style="padding:12px;border-radius:10px;border:1px solid #cfd8d3;font:inherit;">
+      <input name="email" type="email" required maxlength="120" placeholder="Gmail / e-mail z Google Play" style="padding:12px;border-radius:10px;border:1px solid #cfd8d3;font:inherit;">
+      <select name="platform" style="padding:12px;border-radius:10px;border:1px solid #cfd8d3;font:inherit;">
+        <option value="android">Android</option>
+        <option value="ios">iPhone (iOS)</option>
+      </select>
+      <textarea name="note" maxlength="500" rows="3" placeholder="Poznámka (nepovinné)" style="padding:12px;border-radius:10px;border:1px solid #cfd8d3;font:inherit;"></textarea>
+      <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
+      <button class="button" type="submit" style="border:0;cursor:pointer;font:inherit;">Požádat o přístup do bety</button>
+      <p id="beta-msg" role="status" style="margin:0;"></p>
+    </form>
+  </section>
+  <script>
+    document.getElementById('beta-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var f = e.target, msg = document.getElementById('beta-msg');
+      msg.textContent = 'Odesílám…';
+      try {
+        var r = await fetch('https://reader-vocab-ai.tomasdanielkubin.workers.dev/beta/request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: f.name.value, email: f.email.value, platform: f.platform.value,
+            note: f.note.value, website: f.website.value
+          })
+        });
+        if (!r.ok) throw new Error();
+        f.reset();
+        msg.textContent = 'Díky! Brzy tě přidám mezi testery.';
+      } catch (err) {
+        msg.textContent = 'Něco se pokazilo. Zkus to znovu nebo mi napiš e-mail.';
+      }
+    });
+  </script>
 </main>
 
 <footer>

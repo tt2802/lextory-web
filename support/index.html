@@ -286,8 +286,7 @@
     <details>
       <summary>Do I need a Lextory account?</summary>
       <p>
-        No. The current version does not require a Lextory account. Most books,
-        vocabulary, review progress and settings are stored locally on your device.
+        No. Lextory works without an account and most data is stored locally on your device. Signing in with Google is optional and is needed only for AI features, cloud backup and Premium.
       </p>
     </details>
 
@@ -342,6 +341,45 @@
     </p>
     <a class="button" href="mailto:tomasdanielkubin@gmail.com">Contact support</a>
   </section>
+
+  <section class="contact" id="beta">
+    <h2>Join the beta</h2>
+    <p>Want to try Lextory? Leave your name and the Gmail address you use on Google Play and I will add you to the testers. You will get an invitation by email.</p>
+    <form id="beta-form" style="display:grid;gap:12px;max-width:460px;margin-top:16px;">
+      <input name="name" required maxlength="80" placeholder="Your name" style="padding:12px;border-radius:10px;border:1px solid #cfd8d3;font:inherit;">
+      <input name="email" type="email" required maxlength="120" placeholder="Gmail / Google Play email" style="padding:12px;border-radius:10px;border:1px solid #cfd8d3;font:inherit;">
+      <select name="platform" style="padding:12px;border-radius:10px;border:1px solid #cfd8d3;font:inherit;">
+        <option value="android">Android</option>
+        <option value="ios">iPhone (iOS)</option>
+      </select>
+      <textarea name="note" maxlength="500" rows="3" placeholder="Note (optional)" style="padding:12px;border-radius:10px;border:1px solid #cfd8d3;font:inherit;"></textarea>
+      <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
+      <button class="button" type="submit" style="border:0;cursor:pointer;font:inherit;">Request beta access</button>
+      <p id="beta-msg" role="status" style="margin:0;"></p>
+    </form>
+  </section>
+  <script>
+    document.getElementById('beta-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var f = e.target, msg = document.getElementById('beta-msg');
+      msg.textContent = 'Sending…';
+      try {
+        var r = await fetch('https://reader-vocab-ai.tomasdanielkubin.workers.dev/beta/request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: f.name.value, email: f.email.value, platform: f.platform.value,
+            note: f.note.value, website: f.website.value
+          })
+        });
+        if (!r.ok) throw new Error();
+        f.reset();
+        msg.textContent = 'Thanks! I will add you to the testers soon.';
+      } catch (err) {
+        msg.textContent = 'Something went wrong. Please try again or email me.';
+      }
+    });
+  </script>
 </main>
 
 <footer>
